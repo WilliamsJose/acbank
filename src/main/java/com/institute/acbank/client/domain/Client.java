@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 public class Client implements Serializable {
 
 	private static final long serialVersionUID = 5123520287790304642L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -37,6 +37,5 @@ public class Client implements Serializable {
 	private String cpfcnpj;
 	@NotNull
 	private String address;
-	
-}
 
+}

@@ -17,14 +17,12 @@ public class AccountServiceImpl implements AccountService {
 	public void createAccount(Account account) {
 
 		this.accountRepository.save(account);
-		
+
 	}
 
 	@Override
 	public Account getClientAccount(Client client) {
 		return null;
 	}
-	
-	
-	
+
 }

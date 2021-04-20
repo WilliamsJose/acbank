@@ -11,8 +11,9 @@ public class ClientConverterDTO {
 	public static ClientDTO convertToClientDTO(Client client) {
 		return ModelMapperUtil.modelMapper().map(client, ClientDTO.class);
 	}
-	
+
 	public static List<ClientDTO> convertClientsToDTO(List<Client> clients) {
-		return clients.stream().map(client -> ModelMapperUtil.modelMapper().map(client, ClientDTO.class)).collect(Collectors.toList());
+		return clients.stream().map(client -> ModelMapperUtil.modelMapper().map(client, ClientDTO.class))
+				.collect(Collectors.toList());
 	}
 }

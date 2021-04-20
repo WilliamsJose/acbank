@@ -15,13 +15,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TransactionWithdrawDTO {
-	
+
 	private String agency;
 	private String clientName;
 	@Enumerated(EnumType.STRING)
 	private TypeAccount typeAccount;
-	
+
 	private Long value;
-	
+
 	private LocalDateTime date;
 }

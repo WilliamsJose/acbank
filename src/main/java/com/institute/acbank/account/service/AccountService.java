@@ -4,9 +4,9 @@ import com.institute.acbank.account.domain.Account;
 import com.institute.acbank.client.domain.Client;
 
 public interface AccountService {
-	
+
 	Account getClientAccount(Client client);
 
-	void createAccount(Account account); 
-	
+	void createAccount(Account account);
+
 }

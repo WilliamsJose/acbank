@@ -18,20 +18,20 @@ import com.institute.acbank.transaction.service.TransactionService;
 @RestController
 @RequestMapping("/transaction")
 public class TransactionResource {
-	
+
 	@Autowired
 	TransactionService service;
-	
+
 	@PostMapping("/transference")
 	public ResponseEntity<TransactionTransferenceDTO> transfer(@Valid @RequestBody Transaction transaction) {
 		return ResponseEntity.ok(this.service.transfer(transaction));
 	}
-	
+
 	@PostMapping("/deposit")
 	public ResponseEntity<TransactionDepositDTO> deposit(@Valid @RequestBody Transaction transaction) {
 		return ResponseEntity.ok(this.service.deposit(transaction));
 	}
-	
+
 	@PostMapping("/withdraw")
 	public ResponseEntity<TransactionWithdrawDTO> withdraw(@Valid @RequestBody Transaction transaction) {
 		return ResponseEntity.ok(this.service.withdraw(transaction));

@@ -21,7 +21,7 @@ import com.institute.acbank.client.service.ClientServiceImpl;
 @RestController
 @RequestMapping("/clients")
 public class ClientResource {
-	
+
 	@Autowired
 	ClientServiceImpl service;
 
@@ -29,7 +29,7 @@ public class ClientResource {
 	public ResponseEntity<List<ClientDTO>> getAllClients() {
 		return ResponseEntity.ok(ClientConverterDTO.convertClientsToDTO(this.service.getAllClients()));
 	}
-	
+
 //	@PutMapping
 //	public void updateClientById(@RequestBody Client client, @RequestParam("id") Long id) throws Exception {
 //		
@@ -42,18 +42,18 @@ public class ClientResource {
 //		);
 //		
 //	}
-	
+
 	@GetMapping("/{cpfcnpj}")
 	public ResponseEntity<ClientDTO> getClientByCpfCnpj(@PathVariable("cpfcnpj") String cpfcnpj) {
-		
+
 		return ResponseEntity.ok(this.service.getClientByCpfCnpj(cpfcnpj));
 	}
-	
+
 	@PostMapping
 	public ResponseEntity<ClientDTO> createClient(@Valid @RequestBody Client client) {
 		return ResponseEntity.ok(this.service.createClient(client));
 	}
-	
+
 //	@DeleteMapping("/{id}")
 //	public void deleteClient(@PathVariable("id") Long id) {
 //		

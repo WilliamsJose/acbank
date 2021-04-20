@@ -35,8 +35,8 @@ public class TransactionServiceImpl implements TransactionService {
 	public TransactionDepositDTO deposit(Transaction transaction) {
 		TransactionUtils.checkDepositTransaction(transaction);
 
-		Account account = accountRepository.findByNumberAndAgencyAndTypeAccount(
-				transaction.getDestinyAccount(), transaction.getDestinyAgency(), transaction.getDestinyTypeAccount()).orElseThrow(() -> {
+		Account account = accountRepository.findByNumberAndAgencyAndTypeAccount(transaction.getDestinyAccount(),
+				transaction.getDestinyAgency(), transaction.getDestinyTypeAccount()).orElseThrow(() -> {
 					throw new RuntimeException("Nenhuma conta foi encontrada com os dados informados");
 				});
 

@@ -9,5 +9,5 @@ import com.institute.acbank.client.domain.Client;
 public interface ClientRepository extends JpaRepository<Client, Long> {
 
 	Client findBycpfcnpj(String cpfcnpj);
-	
+
 }

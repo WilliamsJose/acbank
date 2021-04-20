@@ -26,7 +26,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Account implements Serializable {
-	
+
 	private static final long serialVersionUID = 1029862922768388026L;
 
 	@Transient
@@ -35,17 +35,17 @@ public class Account implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private Integer number = rand.nextInt(999999);
-	
+
 	private String agency;
-	
+
 	@ManyToOne
 	private Client client;
-	
+
 	private Long balance = 0L;
-	
+
 	@Enumerated(EnumType.STRING)
-    private TypeAccount typeAccount;
+	private TypeAccount typeAccount;
 
 }

@@ -8,8 +8,8 @@ import com.institute.acbank.client.domain.dto.ClientDTO;
 public interface ClientService {
 	// contratos
 	ClientDTO createClient(Client client);
-	
+
 	public ClientDTO getClientByCpfCnpj(String cpfcnpj);
-	
+
 	List<Client> getAllClients();
 }

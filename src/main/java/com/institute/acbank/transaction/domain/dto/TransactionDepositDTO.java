@@ -16,18 +16,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TransactionDepositDTO {
-	
+
 	@Enumerated(EnumType.STRING)
 	private TypeTransaction typeTransaction;
-	
+
 	private String destinyAgency;
-	
+
 	private String destinyClientName;
-	
+
 	@Enumerated(EnumType.STRING)
 	private TypeAccount destinyTypeAccount;
-	
+
 	private Long value;
-	
+
 	private LocalDateTime dateTime;
 }

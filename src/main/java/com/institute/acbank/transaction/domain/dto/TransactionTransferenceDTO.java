@@ -20,16 +20,16 @@ public class TransactionTransferenceDTO {
 	private String originClientName;
 	@Enumerated(EnumType.STRING)
 	private TypeAccount originTypeAccount;
-	
+
 	private String destinyAgency;
 	private String destinyClientName;
 	@Enumerated(EnumType.STRING)
 	private TypeAccount destinyTypeAccount;
-	
+
 	private Long value;
-	
+
 	private LocalDateTime date;
-	
+
 	private String description;
 
 }
