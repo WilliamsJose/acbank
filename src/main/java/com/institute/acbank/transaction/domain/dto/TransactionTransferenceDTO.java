@@ -26,7 +26,7 @@ public class TransactionTransferenceDTO {
 	@Enumerated(EnumType.STRING)
 	private TypeAccount destinyTypeAccount;
 
-	private Long value;
+	private Double value;
 
 	private LocalDateTime date;
 

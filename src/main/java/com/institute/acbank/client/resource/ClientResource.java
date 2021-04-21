@@ -1,16 +1,20 @@
 package com.institute.acbank.client.resource;
 
+import java.net.URI;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.institute.acbank.client.domain.Client;
@@ -30,18 +34,15 @@ public class ClientResource {
 		return ResponseEntity.ok(ClientConverterDTO.convertClientsToDTO(this.service.getAllClients()));
 	}
 
-//	@PutMapping
-//	public void updateClientById(@RequestBody Client client, @RequestParam("id") Long id) throws Exception {
-//		
-//		this.service.getClientByCpfCnpj(id).orElseThrow(
-//				() -> new ClientNotFound(HttpStatus.NOT_FOUND, "Client not found")
-//		);
-//		
-//		this.service.save(
-//				new Client(id, client.getName(), client.getEmail(), client.getPhone())
-//		);
-//		
-//	}
+	@PutMapping
+	public ResponseEntity<ClientDTO> updateClientById(@RequestBody Client client,
+			@RequestParam("cpfcnpj") String cpfcnpj) {
+
+		this.service.updateClient(client, cpfcnpj);
+
+		return ResponseEntity.created(URI.create("/clients/" + client.getName())).build();
+
+	}
 
 	@GetMapping("/{cpfcnpj}")
 	public ResponseEntity<ClientDTO> getClientByCpfCnpj(@PathVariable("cpfcnpj") String cpfcnpj) {
@@ -54,18 +55,10 @@ public class ClientResource {
 		return ResponseEntity.ok(this.service.createClient(client));
 	}
 
-//	@DeleteMapping("/{id}")
-//	public void deleteClient(@PathVariable("id") Long id) {
-//		
-//		this.clientRepository.findById(id).orElseThrow(
-//				() -> new ClientNotFound(HttpStatus.NOT_FOUND, "Client not found")
-//		);
-//		
-//		this.clientRepository.deleteById(id);
-//	}
-//	
-//	@GetMapping("/gmail")
-//	public List<Client> getAllClientsWithGmail() {
-//		return this.clientRepository.getAllClientsWithGmail();
-//	}
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Object> deleteClient(@PathVariable("id") Long id) {
+		this.service.deleteClient(id);
+
+		return ResponseEntity.noContent().build();
+	}
 }

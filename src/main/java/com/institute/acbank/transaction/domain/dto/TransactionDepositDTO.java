@@ -27,7 +27,7 @@ public class TransactionDepositDTO {
 	@Enumerated(EnumType.STRING)
 	private TypeAccount destinyTypeAccount;
 
-	private Long value;
+	private Double value;
 
 	private LocalDateTime dateTime;
 }

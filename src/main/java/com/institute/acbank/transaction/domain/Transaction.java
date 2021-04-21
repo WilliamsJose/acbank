@@ -48,7 +48,7 @@ public class Transaction implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private TypeAccount destinyTypeAccount;
 
-	private Long value;
+	private Double value;
 
 	private LocalDateTime dateTime = LocalDateTime.now();
 

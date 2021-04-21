@@ -3,11 +3,13 @@ package com.institute.acbank.client.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.institute.acbank.client.domain.Client;
 import com.institute.acbank.client.domain.dto.ClientConverterDTO;
 import com.institute.acbank.client.domain.dto.ClientDTO;
+import com.institute.acbank.client.exception.ClientNotFound;
 import com.institute.acbank.client.repository.ClientRepository;
 
 @Service
@@ -16,24 +18,37 @@ public class ClientServiceImpl implements ClientService {
 	@Autowired
 	private ClientRepository clientRepository;
 
-	// service é a ponte entre resource e repository
 	public ClientDTO createClient(Client client) {
 		try {
 			this.clientRepository.save(client);
 		} catch (IllegalArgumentException iae) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException(iae.getMessage(), iae);
 		}
 
 		return ClientConverterDTO.convertToClientDTO(client);
 	}
 
 	public ClientDTO getClientByCpfCnpj(String cpfcnpj) {
-		try {
-			return ClientConverterDTO.convertToClientDTO(this.clientRepository.findBycpfcnpj(cpfcnpj));
-		} catch (Exception e) {
-			throw new RuntimeException("Cliente não encontrado.");
-		}
+		return ClientConverterDTO.convertToClientDTO(this.clientRepository.findBycpfcnpj(cpfcnpj)
+				.orElseThrow(() -> new ClientNotFound(HttpStatus.NOT_FOUND, "Client not found")));
 	};
+
+	public void updateClient(Client client, String cpfcnpj) {
+		this.getClientByCpfCnpj(cpfcnpj);
+
+		try {
+			this.clientRepository.save(client);
+		} catch (IllegalArgumentException iae) {
+			throw new IllegalArgumentException(iae.getMessage(), iae);
+		}
+	}
+
+	public void deleteClient(Long id) {
+		this.clientRepository.findById(id)
+				.orElseThrow(() -> new ClientNotFound(HttpStatus.NOT_FOUND, "Client not found"));
+
+		this.clientRepository.deleteById(id);
+	}
 
 	@Override
 	public List<Client> getAllClients() {

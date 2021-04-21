@@ -16,12 +16,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TransactionWithdrawDTO {
 
-	private String agency;
-	private String clientName;
+	private String originAgency;
+	private String originClientName;
 	@Enumerated(EnumType.STRING)
-	private TypeAccount typeAccount;
+	private TypeAccount originTypeAccount;
 
-	private Long value;
+	private Double value;
 
 	private LocalDateTime date;
 }

@@ -43,7 +43,7 @@ public class Account implements Serializable {
 	@ManyToOne
 	private Client client;
 
-	private Long balance = 0L;
+	private Double balance = 0.0;
 
 	@Enumerated(EnumType.STRING)
 	private TypeAccount typeAccount;

@@ -44,8 +44,8 @@ public class TransactionConverterDTO {
 				.collect(Collectors.toList());
 	}
 
-	public static TransactionTransferenceDTO convertToTransactionWidthdrawDTO(Transaction transaction) {
-		return ModelMapperUtil.modelMapper().map(transaction, TransactionTransferenceDTO.class);
+	public static TransactionWithdrawDTO convertToTransactionWithdrawDTO(Transaction transaction) {
+		return ModelMapperUtil.modelMapper().map(transaction, TransactionWithdrawDTO.class);
 	}
 
 	public static List<TransactionWithdrawDTO> convertTransactionsWithdrawToDTO(List<Transaction> transactions) {
