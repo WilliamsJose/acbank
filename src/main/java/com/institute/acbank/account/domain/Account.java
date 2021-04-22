@@ -3,6 +3,7 @@ package com.institute.acbank.account.domain;
 import java.io.Serializable;
 import java.util.Random;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -43,6 +44,7 @@ public class Account implements Serializable {
 	@ManyToOne
 	private Client client;
 
+	@Column(columnDefinition = "DECIMAL(10,2) DEFAULT 0")
 	private Double balance = 0.0;
 
 	@Enumerated(EnumType.STRING)

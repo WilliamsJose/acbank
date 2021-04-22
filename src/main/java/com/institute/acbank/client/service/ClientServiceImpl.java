@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.institute.acbank.client.domain.Client;
 import com.institute.acbank.client.domain.dto.ClientConverterDTO;
 import com.institute.acbank.client.domain.dto.ClientDTO;
-import com.institute.acbank.client.exception.ClientNotFound;
+import com.institute.acbank.client.exception.ClientExcept;
 import com.institute.acbank.client.repository.ClientRepository;
 
 @Service
@@ -30,7 +30,7 @@ public class ClientServiceImpl implements ClientService {
 
 	public ClientDTO getClientByCpfCnpj(String cpfcnpj) {
 		return ClientConverterDTO.convertToClientDTO(this.clientRepository.findBycpfcnpj(cpfcnpj)
-				.orElseThrow(() -> new ClientNotFound(HttpStatus.NOT_FOUND, "Client not found")));
+				.orElseThrow(() -> new ClientExcept(HttpStatus.NOT_FOUND, "Client not found")));
 	};
 
 	public void updateClient(Client client, String cpfcnpj) {
@@ -45,7 +45,7 @@ public class ClientServiceImpl implements ClientService {
 
 	public void deleteClient(Long id) {
 		this.clientRepository.findById(id)
-				.orElseThrow(() -> new ClientNotFound(HttpStatus.NOT_FOUND, "Client not found"));
+				.orElseThrow(() -> new ClientExcept(HttpStatus.NOT_FOUND, "Client not found"));
 
 		this.clientRepository.deleteById(id);
 	}

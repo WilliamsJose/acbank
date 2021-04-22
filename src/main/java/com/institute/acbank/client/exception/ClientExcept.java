@@ -7,26 +7,26 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class ClientNotFound extends RuntimeException {
+public class ClientExcept extends RuntimeException {
 
 	private static final long serialVersionUID = 947880686669871398L;
 
 	private HttpStatus status;
 
-	public ClientNotFound(HttpStatus status, String message) {
+	public ClientExcept(HttpStatus status, String message) {
 		super(message);
 		this.status = status;
 	}
 
-	public ClientNotFound(String message) {
+	public ClientExcept(String message) {
 		super(message);
 	}
 
-	public ClientNotFound(String message, Throwable error) {
+	public ClientExcept(String message, Throwable error) {
 		super(message, error);
 	}
 
-	public ClientNotFound(Throwable error) {
+	public ClientExcept(Throwable error) {
 		super(error);
 	}
 

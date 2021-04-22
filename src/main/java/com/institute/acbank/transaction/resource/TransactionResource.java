@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,7 @@ public class TransactionResource {
 	@Autowired
 	TransactionService service;
 
-	@PostMapping("/transference")
+	@PostMapping("/transfer")
 	public ResponseEntity<TransactionTransferenceDTO> transfer(@Valid @RequestBody Transaction transaction) {
 		return ResponseEntity.ok(this.service.transfer(transaction));
 	}
@@ -35,6 +36,11 @@ public class TransactionResource {
 	@PostMapping("/withdraw")
 	public ResponseEntity<TransactionWithdrawDTO> withdraw(@Valid @RequestBody Transaction transaction) {
 		return ResponseEntity.ok(this.service.withdraw(transaction));
+	}
+	
+	@PostMapping("/statement/{transactionId}")
+	public ResponseEntity<Transaction> statement(@PathVariable("transactionId") Long transactionId) {
+		return ResponseEntity.ok(this.service.getStatement(transactionId));
 	}
 
 }

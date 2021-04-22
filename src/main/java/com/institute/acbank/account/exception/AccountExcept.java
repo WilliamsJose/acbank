@@ -7,26 +7,26 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class AccountNotFound extends RuntimeException {
+public class AccountExcept extends RuntimeException {
 
 	private static final long serialVersionUID = -346758515522752636L;
 
 	private HttpStatus status;
 
-	public AccountNotFound(HttpStatus status, String message) {
+	public AccountExcept(HttpStatus status, String message) {
 		super(message);
 		this.status = status;
 	}
 
-	public AccountNotFound(String message) {
+	public AccountExcept(String message) {
 		super(message);
 	}
 
-	public AccountNotFound(String message, Throwable error) {
+	public AccountExcept(String message, Throwable error) {
 		super(message, error);
 	}
 
-	public AccountNotFound(Throwable error) {
+	public AccountExcept(Throwable error) {
 		super(error);
 	}
 
